@@ -93,23 +93,17 @@ def password_change_done(request):
     return render(request, 'registration/password_change_ok.html')
 
 
-@login_required
+@staff_member_required
 def users_list(request):
-    if request.user.groups.filter(name='managers').exists():
-        users = User.objects.all()
-        return render(request, 'meter_readings/users_list.html', {'users': users})
-    else:
-        return HttpResponseForbidden()
+    users = User.objects.all()
+    return render(request, 'meter_readings/users_list.html', {'users': users})
 
 
-@login_required
+@staff_member_required
 def user_readings_list(request, pk):
-    if request.user.groups.filter(name='managers').exists():
-        user = get_object_or_404(User, pk=pk)
-        readings = MeterReadings.objects.filter(user=user)
-        return render(request, 'meter_readings/user_readings_list.html', {'readings': readings, 'user': user})
-    else:
-        return HttpResponseForbidden()
+    user = get_object_or_404(User, pk=pk)
+    readings = MeterReadings.objects.filter(user=user)
+    return render(request, 'meter_readings/user_readings_list.html', {'readings': readings, 'user': user})
 
 
 @staff_member_required
@@ -147,7 +141,7 @@ def statistics_hot(request):
     return render(request, 'meter_readings/statistics_hot.html', {'readings': readings})
 
 
-@login_required
+@staff_member_required
 def statistics_cold(request):
     readings = MeterReadings.objects.values('user', 'user__username').annotate(cold_max=Max('cold')).order_by('-cold_max')[:3]
     return render(request, 'meter_readings/statistics_cold.html', {'readings': readings})
