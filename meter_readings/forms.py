@@ -44,7 +44,7 @@ class UserCreationForm(UserCreationForm):
         user.set_password(self.cleaned_data["password1"])
         if commit:
             user.save()
-            user.groups.add(Group.objects.get(name='users'))
+            #user.groups.add(Group.objects.get(name='users'))
         return user
 
 
@@ -71,5 +71,5 @@ class AdminCreationForm(UserCreationForm):
         user.set_password(self.cleaned_data["password1"])
         if commit:
             user.save()
-            user.groups.add(Group.objects.get(name='managers'))
+            #user.groups.add(Group.objects.get(name='managers'))
         return user
