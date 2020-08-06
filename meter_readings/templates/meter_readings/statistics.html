@@ -1,0 +1,7 @@
+{% extends 'meter_readings/base.html' %}
+{% block content %}
+<h2>Статистика по потребителям</h2>
+<p><a href="{% url 'statistics_hot' %}">Горячая вода</a></p>
+<p><a href="{% url 'statistics_cold' %}">Холодная вода</a></p>
+<p><a href="{% url 'dashboard' %}">Назад</a></p>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'meter_readings/base.html' %}
+{% block content %}
+    <table border="1">
+        <caption align="center">История показаний пользователя {{user.username}}</caption>
+            <tr align="center">
+                <th>ID</th>
+                <th>Горячая вода</th>
+                <th>Холодная вода</th>
+                <th>Дата показаний</th>
+            </tr>
+            {% for reading in readings %}
+            <tr align="center">
+                <td>{{ reading.id }}</td>
+                <td>{{ reading.hot }}</td>
+                <td>{{ reading.cold }}</td>
+                <td>{{ reading.publish }}</td>
+                <td><a href="{% url 'user_readings_change' user_id=user.id pk=reading.pk %}">Изменить</a></td>
+                <td><a href="{% url 'user_readings_remove' user_id=user.id pk=reading.pk %}">Удалить</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    <p><a href="{% url 'users_list' %}">Назад</a></p>
+{% endblock %}

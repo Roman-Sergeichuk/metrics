@@ -1,0 +1,14 @@
+{% extends 'meter_readings/base.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+<p><a href="{% url 'readings_new' %}">Внести показания</a></p>
+<p><a href="{% url 'readings_list' %}">История показаний</a></p>
+<p><a href="{% url 'user_profile' %}">Профиль</a></p>
+<p><a href="{% url 'change' %}">Сменить пароль</a></p>
+{% endif %}
+{% if user.is_staff %}
+<p><a href="{% url 'users_list' %}">Список пользователей</a></p>
+<p><a href="{% url 'admin_creation' %}">Создать администратора</a></p>
+<p><a href="{% url 'statistics' %}">Статистика</a></p>
+{% endif %}
+{% endblock %}

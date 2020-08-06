@@ -1,0 +1,8 @@
+{% extends 'meter_readings/base.html' %}
+{% block content %}
+<p>Имя:  {{ user.first_name }}</p>
+<p>Фамилия:  {{ user.last_name }}</p>
+<p>Логин:  {{ user.username }}</p>
+<p>Email:  {{ user.email }}</p>
+<p><a href="{% url 'user_profile_edit' %}">Редактировать</a></p>
+{% endblock %}

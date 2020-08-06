@@ -1,0 +1,17 @@
+{% extends 'meter_readings/base.html' %}
+{% block content %}
+    <table border="1">
+        <caption align="left">Список пользователей</caption>
+            <tr align="center">
+                <th align="center">ID</th>
+                <th align="center">Имя пльзователя</th>
+            </tr>
+            {% for user in users %}
+            <tr align="center">
+                <td>{{ user.id }}</td>
+                <td><a href="{% url 'user_readings_list' pk=user.id%}">{{ user.username }}</a></td>
+            </tr>
+        {% endfor %}
+        </table>
+    <p><a href="{% url 'dashboard' %}">Назад</a></p>
+{% endblock %}

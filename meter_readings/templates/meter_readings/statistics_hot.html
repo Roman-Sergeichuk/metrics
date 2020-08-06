@@ -1,0 +1,19 @@
+{% extends 'meter_readings/base.html' %}
+{% block content %}
+<h2>Наибольшие потребители горячей воды</h2>
+    <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Имя пользователя</th>
+                <th>Показание счетчика</th>
+            </tr>
+            {% for reading in readings %}
+            <tr>
+                <td>{{ reading.user }}</td>
+                <td>{{ reading.user__username }}</td>
+                <td>{{ reading.hot_max }}</td>
+            </tr>
+            {% endfor %}
+    </table>
+    <p><a href="{% url 'dashboard' %}">statistics</a></p>
+{% endblock %}
