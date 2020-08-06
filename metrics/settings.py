@@ -25,7 +25,7 @@ SECRET_KEY = '=r5x#v=cg-&r@sbj!x1gkffcii*(dnvz_g@)t67n1vk&)+lp%^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com', '.herokuapp.com']
 
 
 # Application definition
