@@ -78,7 +78,6 @@ class UserRegisterView(FormView):
         return super(UserRegisterView, self).form_invalid(form)
 
 
-@login_required
 def user_register_done(request):
     return render(request, 'registration/register_done.html')
 
