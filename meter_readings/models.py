@@ -5,8 +5,8 @@ from django.core.validators import MinValueValidator, MaxValueValidator, Validat
 
 
 class MeterReadings(models.Model):
-    hot = models.PositiveIntegerField(validators=[MaxValueValidator(99999), MinValueValidator(0)])
-    cold = models.PositiveIntegerField(validators=[MaxValueValidator(99999), MinValueValidator(0)])
+    hot = models.PositiveIntegerField(verbose_name='Горячая вода', validators=[MaxValueValidator(99999), MinValueValidator(0)])
+    cold = models.PositiveIntegerField(verbose_name='Холодная вода', validators=[MaxValueValidator(99999), MinValueValidator(0)])
     publish = models.DateTimeField(default=timezone.now)
     user = models.ForeignKey(User, related_name='meter_readings', on_delete=models.CASCADE)
 

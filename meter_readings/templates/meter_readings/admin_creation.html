@@ -1,8 +1,13 @@
 {% extends 'meter_readings/base.html' %}
+
+{% extends 'meter_readings/base.html' %}
+
+{% load crispy_forms_tags %}
+
 {% block content %}
     <form method="post" action="">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form|crispy }}
         <input type="submit" value="Зарегистрировать">
     </form>
     <p><a href="{% url 'dashboard' %}">Назад</a></p>

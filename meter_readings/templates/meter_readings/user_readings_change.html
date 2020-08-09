@@ -1,8 +1,9 @@
 {% extends 'meter_readings/base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
     <form method="post" class="post-form">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form|crispy}}
         <button type="submit" class="save btn btn-default">Сохранить</button>
     </form>
     <p><a href="{% url 'users_list' %}">Назад</a></p>

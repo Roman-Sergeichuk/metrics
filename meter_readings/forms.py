@@ -5,12 +5,6 @@ from django.contrib.auth.forms import User, UserCreationForm, UserChangeForm, Re
 from django.core.validators import ValidationError
 
 
-def old_hot(request):
-    old_readings = MeterReadings.objects.filter(user=request.user).order_by[0]
-    hot = old_readings.hot
-    return hot
-
-
 class ReadingsForm(forms.ModelForm):
     class Meta:
         model = MeterReadings
@@ -49,15 +43,11 @@ class UserCreationForm(UserCreationForm):
 
 
 class UserChangeForm(UserChangeForm):
-    password = ReadOnlyPasswordHashField(
-        label=(""),
-        help_text=(''),
-    )
+    password = None
 
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email')
-
 
 
 class AdminCreationForm(UserCreationForm):
