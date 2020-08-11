@@ -3,6 +3,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+    <h2>Пожалуйста, введите показания</h2>
     <form method="post" class="post-form">
         {% csrf_token %}
         {{ form|crispy }}

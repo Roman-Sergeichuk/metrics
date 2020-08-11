@@ -9,6 +9,10 @@ class ReadingsForm(forms.ModelForm):
     class Meta:
         model = MeterReadings
         fields = ('cold', 'hot')
+        widgets = {
+            'cold': forms.NumberInput(attrs={'style': 'width:100px'}),
+            'hot': forms.NumberInput(attrs={'style': 'width:100px'})
+        }
 
     def clean_hot(self):
         new_hot = self.cleaned_data['hot']

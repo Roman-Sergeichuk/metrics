@@ -23,15 +23,17 @@ th {
 font-size: 22px;
 font-weight: 300;
 padding: 12px 10px;
-border-bottom: 2px solid #F56433;
-color: #F56433;
+border-bottom: 2px solid #33bef5;
+color: #54595c;
 }
+
 tbody tr:nth-child(1) {
 border-bottom: 2px solid #F56433;
 }
+
 td {
 padding: 10px;
-color: #8D8173;
+color: #575048;
 }
 
 .content {
@@ -40,14 +42,7 @@ color: #8D8173;
 
 h1, h2, h3, h4 {
     font-family: 'Lobster';
-}
-
-.date {
-    color: #828282;
-}
-
-.save {
-    float: right;
+    padding: 10px;
 }
 
 .post-form textarea, .post-form input {
@@ -61,14 +56,4 @@ h1, h2, h3, h4 {
     margin-right: 20px;
 }
 
-.post {
-    margin-bottom: 70px;
-}
 
-.post h1 a, .post h1 a:visited {
-    color: #000000;
-}
-
-.comment {
-    margin: 20px 0px 20px 20px;
-}
