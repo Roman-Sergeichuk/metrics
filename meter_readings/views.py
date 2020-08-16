@@ -1,17 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse, reverse_lazy
-from django.http import HttpResponseRedirect, HttpResponseForbidden
+from django.http import HttpResponseRedirect
 from .forms import ReadingsForm, UserCreationForm, AdminCreationForm, UserChangeForm
 from .models import MeterReadings
 from django.contrib.auth.models import User
 from django.views.generic.edit import FormView
-from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
+from django.contrib.auth.views import PasswordChangeView
 from django.db.models import Max
-from django.db.models import Count
-from django.core.validators import ValidationError
 from django.utils import timezone
 from django.contrib.auth.forms import PasswordChangeForm
-from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 
 
@@ -28,6 +26,7 @@ def readings_new(request):
     if request.user.meter_readings.count() > 0:
         old_readings = MeterReadings.objects.filter(user=request.user).order_by('-publish')[0]
         readings_max_id = MeterReadings.objects.all().order_by('-id')[0]
+        # Здесь закомментирована валидация на внесение повторных показаний в том же месяце
         # if old_readings.publish.month == timezone.now().month:
         #     return render(request, 'meter_readings/month_validate.html')
         if request.method == 'POST':
@@ -41,7 +40,6 @@ def readings_new(request):
                 return render(request, 'meter_readings/readings_send_done.html')
         else:
             form = ReadingsForm(instance=old_readings)
-
     else:
         if request.method == 'POST':
             form = ReadingsForm(request.POST)
@@ -70,8 +68,6 @@ class UserRegisterView(FormView):
 
     def form_valid(self, form):
         form.save()
-        # Функция super( тип [ , объект или тип ] )
-        # Возвратите объект прокси, который делегирует вызовы метода родительскому или родственному классу типа .
         return super(UserRegisterView, self).form_valid(form)
 
     def form_invalid(self, form):
@@ -147,7 +143,7 @@ def statistics_cold(request):
     return render(request, 'meter_readings/statistics_cold.html', {'readings': readings})
 
 
-class AdminRegisterView(FormView, ):
+class AdminRegisterView(FormView):
 
     form_class = AdminCreationForm
     success_url = reverse_lazy('admin_creation_done')

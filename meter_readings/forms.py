@@ -1,6 +1,5 @@
 from django import forms
 from .models import MeterReadings
-from django.contrib.auth.models import Group
 from django.contrib.auth.forms import User, UserCreationForm, UserChangeForm, ReadOnlyPasswordHashField
 from django.core.validators import ValidationError
 
